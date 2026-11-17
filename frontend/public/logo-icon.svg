@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bv-grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="bv-grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#142B4A" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Modern Hexagonal Dynamic Core -->
+  <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" fill="url(#bv-grad2)" />
+  <polygon points="50,14 80,31 80,69 50,86 20,69 20,31" fill="#142B4A" />
+  
+  <!-- Stylized B & V interconnected futuristic path -->
+  <path d="M35 30 L55 30 C64 30 70 35 70 42 C70 47 66 50 60 51 C67 52 71 56 71 63 C71 71 63 76 53 76 L35 76 Z" fill="none" stroke="url(#bv-grad1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M48 40 L50 66 L64 40" fill="none" stroke="#38BDF8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  <circle cx="50" cy="66" r="3" fill="#FFFFFF" />
+  <circle cx="35" cy="30" r="2.5" fill="#38BDF8" />
+  <circle cx="64" cy="40" r="2.5" fill="#38BDF8" />
+</svg>
