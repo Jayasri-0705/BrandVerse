@@ -155,3 +155,30 @@ SIMPLE_JWT = {
 # CORS Settings
 CORS_ALLOW_ALL_ORIGINS = True  # For seamless local development and multi-port frontend testing
 CORS_ALLOW_CREDENTIALS = True
+
+
+# ---- Render deployment settings ----
+import dj_database_url
+
+_db_url = os.getenv('DATABASE_URL')
+if _db_url:
+    DATABASES['default'] = dj_database_url.parse(_db_url, conn_max_age=600)
+
+if 'whitenoise.middleware.WhiteNoiseMiddleware' not in MIDDLEWARE:
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"},
+}
+
+_render_host = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+if _render_host:
+    ALLOWED_HOSTS = list(ALLOWED_HOSTS) + [_render_host]
+    CSRF_TRUSTED_ORIGINS = [f'https://{_render_host}']
+
+_frontend_url = os.getenv('FRONTEND_URL')
+if _frontend_url:
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOWED_ORIGINS = [_frontend_url]
+    CSRF_TRUSTED_ORIGINS = globals().get('CSRF_TRUSTED_ORIGINS', []) + [_frontend_url]
